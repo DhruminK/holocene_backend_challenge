@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "34a00163-ae29-4d56-9d4c-0c52184caa02",
-		"name": "New Collection",
+		"name": "Backend Challenge",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "36566398"
 	},
@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"plans\": [\r\n            {\r\n                \"planId\": \"cm0m8ccq30001g1knbiuuwauq\",\r\n                \"name\": \"1\",\r\n                \"color\": \"#424232\",\r\n                \"length\": 1,\r\n                \"width\": 1,\r\n                \"weight\": 1,\r\n                \"quantity\": 1,\r\n                \"stackable\": false,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"planId\": \"cm0m8ccq30002g1knb7lv8gnd\",\r\n                \"name\": \"2\",\r\n                \"color\": \"#421042\",\r\n                \"length\": 2,\r\n                \"width\": 2,\r\n                \"weight\": 2,\r\n                \"quantity\": 2,\r\n                \"stackable\": false,\r\n                \"tiltable\": false\r\n            },\r\n            {\r\n                \"planId\": \"cm0m8ccq30003g1knsuvkco11\",\r\n                \"name\": \"4\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 4,\r\n                \"width\": 4,\r\n                \"weight\": 4,\r\n                \"quantity\": 4,\r\n                \"stackable\": false,\r\n                \"tiltable\": false\r\n            },\r\n            {\r\n                \"planId\": \"cm0m8ccq30004g1kn749epere\",\r\n                \"name\": \"5\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 5,\r\n                \"width\": 5,\r\n                \"weight\": 5,\r\n                \"quantity\": 5,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"planId\": \"cm0m8ccq30005g1kng8u6t69w\",\r\n                \"name\": \"6\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 6,\r\n                \"width\": 6,\r\n                \"weight\": 6,\r\n                \"quantity\": 5,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"name\": \"Newly created\",\r\n                \"color\": \"#421042\",\r\n                \"length\": 12,\r\n                \"width\": 12,\r\n                \"weight\": 12,\r\n                \"quantity\": 12,\r\n                \"stackable\": true,\r\n                \"tiltable\": false\r\n            },\r\n            {\r\n                \"planId\": \"cm0m8ccq30007g1kn2062h644\",\r\n                \"name\": \"8\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 8,\r\n                \"width\": 8,\r\n                \"weight\": 8,\r\n                \"quantity\": 8,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"planId\": \"cm0m8ccq30008g1knixa9gusk\",\r\n                \"name\": \"9\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 9,\r\n                \"width\": 9,\r\n                \"weight\": 9,\r\n                \"quantity\": 9,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            }\r\n        ]\r\n}",
+					"raw": "{\r\n    \"plans\": [\r\n            {\r\n                \"name\": \"1\",\r\n                \"color\": \"#424232\",\r\n                \"length\": 1,\r\n                \"width\": 1,\r\n                \"weight\": 1,\r\n                \"quantity\": 1,\r\n                \"stackable\": false,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"name\": \"2\",\r\n                \"color\": \"#421042\",\r\n                \"length\": 2,\r\n                \"width\": 2,\r\n                \"weight\": 2,\r\n                \"quantity\": 2,\r\n                \"stackable\": false,\r\n                \"tiltable\": false\r\n            },\r\n            {\r\n                \"name\": \"4\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 4,\r\n                \"width\": 4,\r\n                \"weight\": 4,\r\n                \"quantity\": 4,\r\n                \"stackable\": false,\r\n                \"tiltable\": false\r\n            },\r\n            {\r\n                \"name\": \"5\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 5,\r\n                \"width\": 5,\r\n                \"weight\": 5,\r\n                \"quantity\": 5,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"name\": \"6\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 6,\r\n                \"width\": 6,\r\n                \"weight\": 6,\r\n                \"quantity\": 5,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"name\": \"Newly created\",\r\n                \"color\": \"#421042\",\r\n                \"length\": 12,\r\n                \"width\": 12,\r\n                \"weight\": 12,\r\n                \"quantity\": 12,\r\n                \"stackable\": true,\r\n                \"tiltable\": false\r\n            },\r\n            {\r\n                \"name\": \"8\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 8,\r\n                \"width\": 8,\r\n                \"weight\": 8,\r\n                \"quantity\": 8,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"name\": \"9\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 9,\r\n                \"width\": 9,\r\n                \"weight\": 9,\r\n                \"quantity\": 9,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            }\r\n        ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -34,7 +34,74 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Create new collections and delete the previous ones",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"plans\": [\r\n            {\r\n                \"name\": \"1\",\r\n                \"color\": \"#424232\",\r\n                \"length\": 1,\r\n                \"width\": 1,\r\n                \"weight\": 1,\r\n                \"quantity\": 1,\r\n                \"stackable\": false,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"name\": \"2\",\r\n                \"color\": \"#421042\",\r\n                \"length\": 2,\r\n                \"width\": 2,\r\n                \"weight\": 2,\r\n                \"quantity\": 2,\r\n                \"stackable\": false,\r\n                \"tiltable\": false\r\n            },\r\n            {\r\n                \"name\": \"4\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 4,\r\n                \"width\": 4,\r\n                \"weight\": 4,\r\n                \"quantity\": 4,\r\n                \"stackable\": false,\r\n                \"tiltable\": false\r\n            },\r\n            {\r\n                \"name\": \"5\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 5,\r\n                \"width\": 5,\r\n                \"weight\": 5,\r\n                \"quantity\": 5,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"name\": \"6\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 6,\r\n                \"width\": 6,\r\n                \"weight\": 6,\r\n                \"quantity\": 5,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"name\": \"Newly created\",\r\n                \"color\": \"#421042\",\r\n                \"length\": 12,\r\n                \"width\": 12,\r\n                \"weight\": 12,\r\n                \"quantity\": 12,\r\n                \"stackable\": true,\r\n                \"tiltable\": false\r\n            },\r\n            {\r\n                \"name\": \"8\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 8,\r\n                \"width\": 8,\r\n                \"weight\": 8,\r\n                \"quantity\": 8,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"name\": \"9\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 9,\r\n                \"width\": 9,\r\n                \"weight\": 9,\r\n                \"quantity\": 9,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            }\r\n        ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "192.168.56.110:3000/plan",
+							"host": [
+								"192",
+								"168",
+								"56",
+								"110"
+							],
+							"port": "3000",
+							"path": [
+								"plan"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Update the existing collection",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"plans\": [\r\n            {\r\n                \"planId\": \"cm0mf4bkf0002cqux07z6p23c\", // [Placeholder] please use planId generated wehn you run the Create new collection example as these IDs might lead to failure; Alternatively use GET request to get the planId\r\n                \"name\": \"1\",\r\n                \"color\": \"#424232\",\r\n                \"length\": 1,\r\n                \"width\": 1,\r\n                \"weight\": 1,\r\n                \"quantity\": 1,\r\n                \"stackable\": false,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"planId\": \"cm0mf4bkf0003cquxf4l1dbwe\",\r\n                \"name\": \"2\",\r\n                \"color\": \"#421042\",\r\n                \"length\": 2,\r\n                \"width\": 2,\r\n                \"weight\": 2,\r\n                \"quantity\": 2,\r\n                \"stackable\": false,\r\n                \"tiltable\": false\r\n            },\r\n            {\r\n                \"planId\": \"cm0mf4bkf0004cquxzpxtt6ya\",\r\n                \"name\": \"4\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 4,\r\n                \"width\": 4,\r\n                \"weight\": 4,\r\n                \"quantity\": 4,\r\n                \"stackable\": false,\r\n                \"tiltable\": false\r\n            },\r\n            {\r\n                \"planId\": \"cm0mf4bkf0005cqux39y23rvz\",\r\n                \"name\": \"5\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 5,\r\n                \"width\": 5,\r\n                \"weight\": 5,\r\n                \"quantity\": 5,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"planId\": \"cm0mf4bkf0006cquxyxd0zhyy\",\r\n                \"name\": \"6\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 6,\r\n                \"width\": 6,\r\n                \"weight\": 6,\r\n                \"quantity\": 5,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"planId\": \"cm0mf4bkf0007cqux6dh2bnbq\",\r\n                \"name\": \"Newly created\",\r\n                \"color\": \"#421042\",\r\n                \"length\": 12,\r\n                \"width\": 12,\r\n                \"weight\": 12,\r\n                \"quantity\": 12,\r\n                \"stackable\": true,\r\n                \"tiltable\": false\r\n            },\r\n            {\r\n                \"planId\": \"cm0mf4bkf0008cqux1hagzvl4\",\r\n                \"name\": \"8\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 8,\r\n                \"width\": 8,\r\n                \"weight\": 8,\r\n                \"quantity\": 8,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            },\r\n            {\r\n                \"planId\": \"cm0mf4bkf0009cqux5j92ob8s\",\r\n                \"name\": \"9\",\r\n                \"color\": \"#424042\",\r\n                \"length\": 9,\r\n                \"width\": 9,\r\n                \"weight\": 9,\r\n                \"quantity\": 9,\r\n                \"stackable\": true,\r\n                \"tiltable\": true\r\n            }\r\n        ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "192.168.56.110:3000/plan",
+							"host": [
+								"192",
+								"168",
+								"56",
+								"110"
+							],
+							"port": "3000",
+							"path": [
+								"plan"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "GET request (for testing)",
