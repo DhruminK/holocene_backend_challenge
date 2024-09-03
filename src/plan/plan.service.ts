@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateNewPlanDTO } from "src/schema/CreateNewPlanDTO";
-import { DeletePlanDTO } from 'src/schema/DeletePlanDTO';
-import { RequestDTO, ResponseDTO } from 'src/schema/RequestDTO';
+import { NewRequestDTO, NewResponseDataDTO, NewResponseDTO } from 'src/schema/RequestDTO';
 import { UpdatePlanDTO } from 'src/schema/UpdatePlanDTO';
 
 @Injectable()
@@ -44,10 +43,10 @@ export class PlanService {
      */
     private async updateMultiPlan(updatePlanDetails: UpdatePlanDTO[]): Promise<{ successfulPlan: Prisma.PlanGetPayload<{}>[], failedPlans: (string[] | undefined) }> {
         if (updatePlanDetails.length === 0) {
-            return ({ successfulPlan: [], failedPlans: [] });
+            return ({ successfulPlan: [], failedPlans: undefined });
         }
         const updatedPlans = await Promise.allSettled(updatePlanDetails.map(plan => this.updateSinglePlan(plan)));
-        const res = { successfulPlan: [], failedPlans: undefined };
+        const res = { successfulPlan: [] as Prisma.PlanGetPayload<{}>[], failedPlans: undefined as string[] | undefined };
         updatedPlans.forEach((planStatus, index) => {
             if (planStatus.status === "fulfilled") {
                 res.successfulPlan.push(planStatus.value);
@@ -61,41 +60,42 @@ export class PlanService {
     }
 
     /**
-     * Function to delete plans with given plan id
-     * @param planIds An array of string containing plan ids
+     * Function to take in plans from the database and check if any new plans are created, update existing plans and delete all the plans not present in the list
+     * @param reqData Object of type NewRequestDTO containing all plans are creation, modification and deletion
+     * @returns An object of type NewResponseDTO containing boolean parameter success which tells if the request was successful or not and data parameter containing plans are operation
      */
-    private async deleteMultiPlans(planIds: DeletePlanDTO["planIds"]): Promise<void> {
-        if (planIds.length === 0) {
-            return;
+    async revisedRequest(reqData: NewRequestDTO): Promise<NewResponseDTO> {
+
+        /**
+         * Filter out plans to be created and updated using planId, plans to be created will not have planId
+         */
+        const plansToBeUpdated = reqData.plans.filter((plan): plan is UpdatePlanDTO => ("planId" in plan));
+        const plansToBeCreated = reqData.plans.filter((plan): plan is CreateNewPlanDTO => !("planId" in plan));
+        const planIdsToBeUpdated = plansToBeUpdated.map(plan => plan.planId);
+
+        /**
+         * Delete the plans which are not present in the reqData
+         */
+        await this.prismaService.plan.deleteMany({ where: { planId: { notIn: planIdsToBeUpdated } } });
+        const [createdPlanStatus, updatedPlanStatus] = await Promise.allSettled([this.createMultiPlans(plansToBeCreated), this.updateMultiPlan(plansToBeUpdated)]);
+        const data: NewResponseDataDTO = {
+            /** Property to store request data and send it in the response, in case plan creation fails */
+            planFailedToBeCreated: createdPlanStatus.status === "rejected" ? plansToBeCreated : undefined,
+
+            /** Property to store the IDs for which update failed and send it in the response, in case plan updation fails  */
+            planFailedToBeUpdated: updatedPlanStatus.status === "rejected" ? plansToBeUpdated.map(plan => plan.planId) : updatedPlanStatus.value.failedPlans,
+            plans: [...(createdPlanStatus.status === "fulfilled" ? createdPlanStatus.value : []), ...(updatedPlanStatus.status === "fulfilled" ? updatedPlanStatus.value.successfulPlan : [])]
         }
-        (await this.prismaService.plan.deleteMany({ where: { planId: { in: planIds } } }));
+        return ({ success: !data.planFailedToBeCreated?.length && !data.planFailedToBeUpdated?.length, data });
     }
 
     /**
-     * Function to delete, update and create plans given the data recieved
-     * @param reqData Object of type RequestDTO
-     * @returns An object of type ResponseDTO
+     * Function to get all the plans currently in the database
+     * @returns Object of type NewResponseDTO containing success parameter and data parameter
      */
-    async serviceRequest(reqData: RequestDTO): Promise<ResponseDTO> {
-        const [createNewPlan, updatePlan, deletePlan] = await Promise.allSettled([
-            this.createMultiPlans(reqData.createNewPlans),
-            this.updateMultiPlan(reqData.updatePlans),
-            this.deleteMultiPlans(reqData.deletePlans.planIds)
-        ]);
+    async getAllPlans(): Promise<NewResponseDTO> {
+        const plans = await this.prismaService.plan.findMany();
+        return ({ success: true, data: { plans } })
 
-        const data: ResponseDTO["data"] = {
-            planCreated: createNewPlan.status === "fulfilled" ? (createNewPlan.value) : [],
-            planUpdated: updatePlan.status === "fulfilled" ? (updatePlan.value.successfulPlan) : [],
-            planDeleted: deletePlan.status === "fulfilled" ? (reqData.deletePlans.planIds) : [],
-
-            planFailedToBeCreated: createNewPlan.status === "rejected" ? (reqData.createNewPlans) : undefined,
-            planFailedToBeDeleted: deletePlan.status === "rejected" ? (reqData.deletePlans.planIds) : undefined,
-            planFailedToBeUpdated: updatePlan.status === "fulfilled" ? updatePlan.value.failedPlans : reqData.updatePlans.map(planDetails => planDetails.planId)
-        }
-
-        const isError = data.planFailedToBeCreated || data.planFailedToBeDeleted || data.planFailedToBeUpdated;
-        return ({
-            success: !isError, data
-        })
     }
 }
