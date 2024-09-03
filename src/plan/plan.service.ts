@@ -76,7 +76,6 @@ export class PlanService {
         /**
          * Delete the plans which are not present in the reqData
          */
-        await this.prismaService.plan.deleteMany({ where: { planId: { notIn: planIdsToBeUpdated } } });
         const [createdPlanStatus, updatedPlanStatus] = await Promise.allSettled([this.createMultiPlans(plansToBeCreated), this.updateMultiPlan(plansToBeUpdated)]);
         const data: NewResponseDataDTO = {
             /** Property to store request data and send it in the response, in case plan creation fails */
@@ -85,6 +84,15 @@ export class PlanService {
             /** Property to store the IDs for which update failed and send it in the response, in case plan updation fails  */
             planFailedToBeUpdated: updatedPlanStatus.status === "rejected" ? plansToBeUpdated.map(plan => plan.planId) : updatedPlanStatus.value.failedPlans,
             plans: [...(createdPlanStatus.status === "fulfilled" ? createdPlanStatus.value : []), ...(updatedPlanStatus.status === "fulfilled" ? updatedPlanStatus.value.successfulPlan : [])]
+        }
+
+        /** Delete the plans only if the updation and completion happens successfully */
+        const planIdsNotToBeDeleted = data.plans.map(plan => plan.planId);
+        if (!data.planFailedToBeCreated?.length && !data.planFailedToBeUpdated?.length) {
+            await this.prismaService.plan.deleteMany({ where: { planId: { notIn: planIdsNotToBeDeleted } } })
+        } else {
+            /** In case of failure send the data currently in the database back to the frontend for further operations */
+            data.plans = await this.prismaService.plan.findMany({});
         }
         return ({ success: !data.planFailedToBeCreated?.length && !data.planFailedToBeUpdated?.length, data });
     }
